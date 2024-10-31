@@ -3,91 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M's Art Portfolio</title>
+    <title>Art & Science Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Simple gallery filtering logic
+        // Dark mode functionality
         document.addEventListener('DOMContentLoaded', () => {
-            const filterButtons = document.querySelectorAll('[data-filter]');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const html = document.documentElement;
+            const toggleButton = document.getElementById('theme-toggle');
+            
+            const userTheme = localStorage.getItem('theme');
+            if (userTheme === 'dark') {
+                html.classList.add('dark');
+            }
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.getAttribute('data-filter');
-                    
-                    galleryItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+            toggleButton.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
 
-                    // Active state for filter buttons
-                    filterButtons.forEach(btn => btn.classList.remove('bg-gray-700'));
-                    button.classList.add('bg-gray-700');
-                });
+            // Animate the Yin-Yang symbol
+            gsap.to("#yin-yang", {
+                rotation: 360,
+                duration: 20,
+                repeat: -1,
+                ease: "none"
             });
         });
     </script>
+    <style>
+        .dark {
+            color-scheme: dark;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hover-float:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <header class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold">M's Art Portfolio</h1>
-            <p class="mt-2 text-gray-300">Exploring creativity through visual expression</p>
+<body class="min-h-screen transition-colors duration-300 dark:bg-gray-900 bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 dark:text-yellow-300 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        </button>
+
+        <!-- Main Content -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 dark:text-white">The Duality of Art & Science</h1>
+            <svg id="yin-yang" class="w-24 h-24 mx-auto mb-8" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="dark:text-white text-gray-800" stroke-width="2"/>
+                <path d="M50 5 A45 45 0 0 1 50 95 A22.5 22.5 0 1 1 50 50 A22.5 22.5 0 1 0 50 5" class="dark:text-white text-gray-800"/>
+                <circle cx="50" cy="27.5" r="5" class="dark:fill-gray-800 fill-white"/>
+                <circle cx="50" cy="72.5" r="5" class="dark:fill-white fill-gray-800"/>
+            </svg>
         </div>
-    </header>
 
-    <nav class="bg-gray-200 py-4">
-        <div class="container mx-auto px-4 flex justify-center space-x-4">
-            <button data-filter="all" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">All</button>
-            <button data-filter="painting" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Paintings</button>
-            <button data-filter="digital" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Digital Art</button>
-            <button data-filter="sketch" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Sketches</button>
+        <div class="max-w-4xl mx-auto mb-12 text-gray-700 dark:text-gray-300">
+            <p class="mb-6">Yin and Yang, with deep roots in Chinese philosophy, represent the duality and interconnectedness of seemingly opposite forces. Like art and science, they are complementary forces that together create a dynamic system where the whole is greater than the sum of its parts.</p>
+            
+            <p class="mb-6">Art and science may seem like opposites, but they have influenced each other for centuries. During the Renaissance, both fields relied on precise visual observation, with figures like Brunelleschi and Leonardo da Vinci playing pivotal roles.</p>
         </div>
-    </nav>
 
-    <main class="container mx-auto px-4 py-8">
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Gallery Items -->
-            <div data-category="painting" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="/api/placeholder/400/300" alt="Painting 1" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg">Sunset Landscape</h3>
-                    <p class="text-gray-600">Acrylic on canvas, 2023</p>
+        <!-- Portal Links -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Art Portal -->
+            <a href="M's Art Portfolio" class="hover-float group">
+                <div class="p-8 rounded-lg bg-white dark:bg-gray-800 shadow-lg transition-transform transform hover:scale-105">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Art Portal</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Explore the creative realm through visual expression and artistic innovation.</p>
                 </div>
-            </div>
+            </a>
 
-            <div data-category="digital" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="/api/placeholder/400/300" alt="Digital Art 1" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg">Cyberpunk City</h3>
-                    <p class="text-gray-600">Digital illustration, 2022</p>
+            <!-- Science Portal -->
+            <a href="dox.youroldgaming" class="hover-float group">
+                <div class="p-8 rounded-lg bg-white dark:bg-gray-800 shadow-lg transition-transform transform hover:scale-105">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Science Portal</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Discover the world of computer science and technological advancement.</p>
                 </div>
-            </div>
-
-            <div data-category="sketch" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="/api/placeholder/400/300" alt="Sketch 1" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg">Urban Sketch</h3>
-                    <p class="text-gray-600">Pencil on paper, 2023</p>
-                </div>
-            </div>
-
-            <!-- Add more gallery items as needed -->
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <div class="mb-4">
-                <a href="mailto:artist@example.com" class="text-gray-300 hover:text-white mx-2">Contact</a>
-                <a href="#" class="text-gray-300 hover:text-white mx-2">Instagram</a>
-                <a href="#" class="text-gray-300 hover:text-white mx-2">Behance</a>
-            </div>
-            <p class="text-sm text-gray-400">&copy; 2024 M's Art Portfolio. All Rights Reserved.</p>
+            </a>
         </div>
-    </footer>
+    </div>
 </body>
 </html>
