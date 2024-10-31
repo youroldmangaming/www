@@ -1,1 +1,93 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M's Art Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Simple gallery filtering logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('[data-filter]');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // Active state for filter buttons
+                    filterButtons.forEach(btn => btn.classList.remove('bg-gray-700'));
+                    button.classList.add('bg-gray-700');
+                });
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold">M's Art Portfolio</h1>
+            <p class="mt-2 text-gray-300">Exploring creativity through visual expression</p>
+        </div>
+    </header>
+
+    <nav class="bg-gray-200 py-4">
+        <div class="container mx-auto px-4 flex justify-center space-x-4">
+            <button data-filter="all" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">All</button>
+            <button data-filter="painting" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Paintings</button>
+            <button data-filter="digital" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Digital Art</button>
+            <button data-filter="sketch" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Sketches</button>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Gallery Items -->
+            <div data-category="painting" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="/api/placeholder/400/300" alt="Painting 1" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">Sunset Landscape</h3>
+                    <p class="text-gray-600">Acrylic on canvas, 2023</p>
+                </div>
+            </div>
+
+            <div data-category="digital" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="/api/placeholder/400/300" alt="Digital Art 1" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">Cyberpunk City</h3>
+                    <p class="text-gray-600">Digital illustration, 2022</p>
+                </div>
+            </div>
+
+            <div data-category="sketch" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="/api/placeholder/400/300" alt="Sketch 1" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg">Urban Sketch</h3>
+                    <p class="text-gray-600">Pencil on paper, 2023</p>
+                </div>
+            </div>
+
+            <!-- Add more gallery items as needed -->
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4">
+                <a href="mailto:artist@example.com" class="text-gray-300 hover:text-white mx-2">Contact</a>
+                <a href="#" class="text-gray-300 hover:text-white mx-2">Instagram</a>
+                <a href="#" class="text-gray-300 hover:text-white mx-2">Behance</a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2024 M's Art Portfolio. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
