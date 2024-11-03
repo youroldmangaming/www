@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
     
     <script>
-        // Simple gallery filtering logic
         document.addEventListener('DOMContentLoaded', () => {
             const filterButtons = document.querySelectorAll('[data-filter]');
             const galleryItems = document.querySelectorAll('.gallery-item');
@@ -25,53 +24,40 @@
                         }
                     });
 
-                    // Active state for filter buttons
                     filterButtons.forEach(btn => btn.classList.remove('bg-gray-700'));
                     button.classList.add('bg-gray-700');
                 });
             });
 
-          // Animate the Yin-Yang symbol
+            // Animate the Yin-Yang symbol
             gsap.to("#yin-yang", {
                 rotation: 360,
                 duration: 20,
                 repeat: -1,
                 ease: "none"
             });
-
-            
         });
     </script>
 </head>
 <body class="bg-gray-100 font-sans">
-    
-
-    
     <header class="bg-gray-800 text-white py-6">
-        
         <div class="container mx-auto px-4 text-center">
-
-     
-            
             <h1 class="text-4xl font-bold">Mike's Art Portfolio</h1>
             
-   <div class="text-center mb-12">
-            <!--h1 class="text-4xl font-bold mb-4 dark:text-white">The Duality of Art & Science</h1-->
-            <svg id="yin-yang" class="w-24 h-24 mx-auto mb-8" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="dark:text-white text-gray-800" stroke-width="2"/>
-                <path d="M50 5 A45 45 0 0 1 50 95 A22.5 22.5 0 1 1 50 50 A22.5 22.5 0 1 0 50 5" class="dark:text-white text-gray-800"/>
-                <circle cx="50" cy="27.5" r="5" class="dark:fill-gray-800 fill-white"/>
-                <circle cx="50" cy="72.5" r="5" class="dark:fill-white fill-gray-800"/>
-            </svg>
-        </div>
+            <div class="text-center mb-12">
+                <!-- Wrapped the SVG in an anchor tag with hover effect -->
+                <a href="index.html" class="inline-block hover:opacity-80 transition-opacity cursor-pointer">
+                    <svg id="yin-yang" class="w-24 h-24 mx-auto mb-8" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="dark:text-white text-gray-800" stroke-width="2"/>
+                        <path d="M50 5 A45 45 0 0 1 50 95 A22.5 22.5 0 1 1 50 50 A22.5 22.5 0 1 0 50 5" class="dark:text-white text-gray-800"/>
+                        <circle cx="50" cy="27.5" r="5" class="dark:fill-gray-800 fill-white"/>
+                        <circle cx="50" cy="72.5" r="5" class="dark:fill-white fill-gray-800"/>
+                    </svg>
+                </a>
+            </div>
 
-            
             <div data-category="painting" class="gallery-item bg-white shadow-md rounded-lg overflow-hidden">
                 <img src="/images/yinyah.jpeg" alt="Y&Y" class="w-full h-64 object-cover">
-                <!--div class="p-4">
-                    <h3 class="font-bold text-lg">Sunset Landscape</h3>
-                    <p class="text-gray-600">Acrylic on canvas, 2023</p>
-            </div-->
             </div>
             
             <p class="mt-2 text-gray-300">Exploring creativity through visual expression</p>
@@ -113,8 +99,6 @@
                     <p class="text-gray-600">Pencil on paper, 2023</p>
                 </div>
             </div>
-
-            <!-- Add more gallery items as needed -->
         </section>
     </main>
 
