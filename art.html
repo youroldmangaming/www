@@ -29,6 +29,30 @@
                 });
             });
 
+
+            const expandButton = document.getElementById('expand-button');
+            const fullContent = document.getElementById('full-content');
+            const preview = document.getElementById('preview');
+        
+
+           // Expand/Collapse functionality
+            expandButton.addEventListener('click', () => {
+                const isExpanded = fullContent.classList.contains('hidden');
+                
+                if (isExpanded) {
+                    fullContent.classList.remove('hidden');
+                    preview.classList.add('hidden');
+                    expandButton.textContent = 'Read Less';
+                    // Smooth scroll to the top of the section
+                    document.getElementById('intro-section').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    fullContent.classList.add('hidden');
+                    preview.classList.remove('hidden');
+                    expandButton.textContent = 'Read More';
+                }
+            });
+
+            
             // Animate the Yin-Yang symbol
             gsap.to("#yin-yang", {
                 rotation: 360,
@@ -92,6 +116,15 @@
                 </div>
             </div>
         </div>
+
+ <!-- Expand/Collapse Button -->
+            <div class="text-center mt-4">
+                <button id="expand-button" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+                    Read More
+                </button>
+            </div>
+
+        
     </section>
 
     <nav class="bg-gray-200 py-4">
